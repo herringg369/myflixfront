@@ -25,6 +25,7 @@ export function LoginView(props) {
     console.log(props.test)
     return (
         <Form>
+        <h1>Login</h1>
         <button onClick={props.test}>Test</button>
 
           <Form.Group controlId="formUsername">
