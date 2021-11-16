@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 
 import { MovieCard } from '../movie-card/movie-card'
@@ -81,8 +81,11 @@ export class MainView extends React.Component {
 
       render() {
         const { movies, user } = this.state;
+        
         return (
-          <Router>
+          <BrowserRouter>
+
+          <Routes>
             <Row className="main-view justify-content-md-center">
               <Route exact path="/" render={() => {
                 if (!user) return <Col>
@@ -96,7 +99,7 @@ export class MainView extends React.Component {
                 ))
               }} />
               <Route path="/register" render={() => {
-                if (user) return <Redirect to="/" />
+                if (user) return <Navigate to="/" />
                 return <Col>
                   <RegistrationView />
                 </Col>
@@ -134,7 +137,8 @@ export class MainView extends React.Component {
               }
               } />
             </Row>
-          </Router>
+            </Routes>
+          </BrowserRouter>
         );
       }  
     }
