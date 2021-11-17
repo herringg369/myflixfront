@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 
 import { MovieCard } from '../movie-card/movie-card'
@@ -9,6 +10,7 @@ import { LoginView } from '../login-view/login-view'
 import { RegistrationView } from '../registration-view/registration-view'
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
+import { ProfileView } from '../profile-view/profile-view'
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -80,13 +82,12 @@ export class MainView extends React.Component {
       }
 
       render() {
+
         const { movies, user } = this.state;
-        
+
         return (
-          <Row className="main-view justify-content-md-center">
-          <BrowserRouter>
-          <Routes>
-          
+          <Router>
+            <Row className="main-view justify-content-md-center">
               <Route exact path="/" render={() => {
                 if (!user) return <Col>
                   <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
@@ -99,10 +100,19 @@ export class MainView extends React.Component {
                 ))
               }} />
               <Route path="/register" render={() => {
-                if (user) return <Navigate to="/" />
+                if (user) return <Redirect to="/" />
                 return <Col>
                   <RegistrationView />
                 </Col>
+              }} />
+
+              <Route exact path="/user/:Username" render={() => {
+                if (!user) return <Col>
+                <LoginView onLoggedIn={user => this.onLoggedIn(user)}  />
+              </Col>
+              return <Col>
+               <ProfileView user={user} />
+               </Col>
               }} />
     
               <Route path="/movies/:movieId" render={({ match, history }) => {
@@ -136,9 +146,8 @@ export class MainView extends React.Component {
                 </Col>
               }
               } />
-          </Routes>
-          </BrowserRouter>
-          </Row>
+            </Row>
+          </Router>
         );
-      }  
+      }
     }
