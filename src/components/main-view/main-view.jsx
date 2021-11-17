@@ -83,10 +83,10 @@ export class MainView extends React.Component {
         const { movies, user } = this.state;
         
         return (
+          <Row className="main-view justify-content-md-center">
           <BrowserRouter>
-          <Routes> 
-
-            <Row className="main-view justify-content-md-center">
+          <Routes>
+          
               <Route exact path="/" render={() => {
                 if (!user) return <Col>
                   <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
@@ -136,10 +136,9 @@ export class MainView extends React.Component {
                 </Col>
               }
               } />
-            </Row>
-
           </Routes>
           </BrowserRouter>
+          </Row>
         );
       }  
     }
