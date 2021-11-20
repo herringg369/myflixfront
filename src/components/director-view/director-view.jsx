@@ -4,6 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 export class DirectorView extends React.Component {
+
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    }
+
   render() {
     const { director } = this.props
 

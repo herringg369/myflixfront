@@ -77,9 +77,9 @@ export class MainView extends React.Component {
         });
       }
 
-      test() {
+      /*test() {
         console.log('test')
-      }
+      }*/
 
       render() {
 
@@ -112,6 +112,7 @@ export class MainView extends React.Component {
                 if (!user) return <Col>
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}  />
               </Col>
+              if (movies.length === 0) return <div className="main-view" />;
               return <Col>
                <ProfileView user={user} />
                </Col>
