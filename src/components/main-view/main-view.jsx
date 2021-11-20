@@ -108,7 +108,7 @@ export class MainView extends React.Component {
                 </Col>
               }} />
 
-              <Route exact path="/user/:Username" render={() => {
+              <Route exact path="/users/:Username" render={() => {
                 if (!user) return <Col>
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)}  />
               </Col>
