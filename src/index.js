@@ -1,17 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Container from 'react-bootstrap/Container';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import moviesApp from './reducers/reducers';
+import MainView from './components/main-view/main-view'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const store = createStore(moviesApp)
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+class MyFlixApplication extends React.Component {
+  render() {
+    return(
+     <Provider store={store}>
+        <Container>
+          <MainView />
+        </Container>
+      </Provider>
+    );
+  }
+}
+
+// Find the root of our app
+const container = document.getElementsByClassName('app-container')[0];
+
+// Tell React to render our app in the root DOM element
+ReactDOM.render(React.createElement(MyFlixApplication), container)
