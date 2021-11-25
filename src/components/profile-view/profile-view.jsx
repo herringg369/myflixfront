@@ -84,14 +84,26 @@ export class ProfileView extends React.Component {
       });
     }
 
+    onLoggedOut() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      this.setState({
+        user: null
+      });
+    }
+
   render() {
 
    return (
        <div className="profileView">
        <h1>Hello {this.state.Username}</h1>
+       <p>What would you like to watch today?</p>
 
       <div><button onClick={this.getUser}>View Profile</button></div>
+      <button onClick={this.onLoggedOut}>Log Out</button>
 
+      <br/>
+      <h2>Update your profile?</h2>
       <Form className="update-form">
 
         <Form.Group controlId="formUsername">

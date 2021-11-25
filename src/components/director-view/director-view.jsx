@@ -9,16 +9,20 @@ export class DirectorView extends React.Component {
     let accessToken = localStorage.getItem('token');
     }
 
+
   render() {
-    const { director } = this.props
+    const { director, onBackClick } = this.props
 
    return (
        <div className="director-view">
+       <div>
           <h1>{director.Name}</h1>
           <div className="directorBio">{director.Bio}</div>
           <div className="directorBirth">{director.Birth}</div>
           <div className="directorDeath">{director.Death}</div>
           <div className="directorMovies">{director.Movies}</div>
+        </div>
+        <button onClick={() => { onBackClick() }}>Back</button>
        </div>
    )
   }

@@ -15,8 +15,7 @@ import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view'
 
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import { Row, Col, Navbar, Nav } from 'react-bootstrap'
 
 class MainView extends React.Component {
 
@@ -87,7 +86,13 @@ class MainView extends React.Component {
 
         return (
           <div>
-          <button onClick={this.onLoggedOut}>Log Out</button>
+          <Navbar expand='lg'>
+            <Nav.Link href='/register'>Register</Nav.Link>
+            <br/>
+            <Nav.Link href={`/users/:Username`}>User Profile</Nav.Link>
+            <br/>
+            <Nav.Link href='/'>Movies</Nav.Link>
+          </Navbar>
           <Router>
             <Row className="main-view justify-content-md-center">
               <Route exact path="/" render={() => {
