@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import Form from 'react-bootstrap/Form'
+import './profile-view.scss'
 
 export class ProfileView extends React.Component {
   

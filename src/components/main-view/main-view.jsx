@@ -14,6 +14,7 @@ import { RegistrationView } from '../registration-view/registration-view'
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view'
+import './main-view.scss'
 
 import { Row, Col, Navbar, Nav } from 'react-bootstrap'
 
@@ -103,6 +104,7 @@ class MainView extends React.Component {
               }} />
               <Route path="/register" render={() => {
                 if (user) return <Redirect to="/" />
+                alert('You are already signed in')
                 return <Col>
                   <RegistrationView />
                 </Col>
