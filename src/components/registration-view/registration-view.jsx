@@ -22,7 +22,7 @@ export function RegistrationView(props) {
       .then(response => {
         const data = response.data;
         console.log(data);
-        alert(data)
+        alert(data.json)
         window.open('/', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
       })
       .catch(e => {

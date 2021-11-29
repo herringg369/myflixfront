@@ -11,7 +11,8 @@ export class ProfileView extends React.Component {
       Username: null,
       Password: null,
       Email: null,
-      Birthday: null
+      Birthday: null,
+      FavoriteMovies: []
     }
   }
 
@@ -32,7 +33,7 @@ export class ProfileView extends React.Component {
           Password: response.data.Password,
           Email: response.data.Email,
           Birthday: response.data.Birthday,
-          Favorites: response.data.Favorites
+          FavoriteMovies: response.data.FavoriteMovies
         });
       })
       .catch(function (error) {
@@ -71,13 +72,14 @@ export class ProfileView extends React.Component {
     deleteUser() {
       const username = localStorage.getItem('user')
       const token = localStorage.getItem('token')
-      axios.delete('https://herringg369movieapi.herokuapp.com/users/${username}', {
+      axios.delete(`https://herringg369movieapi.herokuapp.com/users/${username}`, {
         headers: { Authorization: `Bearer ${token}`}
       })
       .then(response => {
         alert('This user has been deleted')
         localStorage.removeItem('user')
         localStorage.removeItem('token')
+        window.open('/', '_self')
       })
       .catch(function (error) {
         console.log(error);
@@ -87,9 +89,7 @@ export class ProfileView extends React.Component {
     onLoggedOut() {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      this.setState({
-        user: null
-      });
+      window.open('/', '_self')
     }
 
   render() {
@@ -98,6 +98,7 @@ export class ProfileView extends React.Component {
        <div className="profileView">
        <h1>Hello {this.state.Username}</h1>
        <p>What would you like to watch today?</p>
+       <h2>Favorites: {this.state.FavoriteMovies}</h2>
 
       <div><button onClick={this.getUser}>View Profile</button></div>
       <button onClick={this.onLoggedOut}>Log Out</button>

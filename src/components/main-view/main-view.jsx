@@ -23,7 +23,8 @@ class MainView extends React.Component {
         super()
         // stores data
         this.state = {
-           user: null
+           user: null,
+           FavoriteMovies: []
         }
     }
 
@@ -57,9 +58,7 @@ class MainView extends React.Component {
       onLoggedOut() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        this.setState({
-          user: null
-        });
+        window.open('/', '_self')
       }
 
       getMovies(token) {
