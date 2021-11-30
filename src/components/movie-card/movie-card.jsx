@@ -12,27 +12,27 @@ export class MovieCard extends React.Component {
 
     const { movie } = this.props;
 
-    console.log(movie._id)
-
+    const updateFav = function () {
       const username = localStorage.getItem('user')
       const token = localStorage.getItem('token')
-
       const movieID = movie._id
-
-      const update = function () {
-        axios.update(`https://herringg369movieapi.herokuapp.com/users/${username}/movies/${movieID}}`, {
-        headers: { Authorization: `Bearer ${token}`}
-      })
-      .then(response => {
-        // Assign the result to the state
-        this.setState({
-          FavoriteMovies: movieID
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
+  
+      axios.post(`https://herringg369movieapi.herokuapp.com/users/${username}/movies/${movieID}}`, {
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      // Assign the result to the state
+      this.setState({
+        FavoriteMovies: movieID
       });
-    }
+      alert('Added to favorites')
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+    console.log(movie._id)
     
     return (
       <Card>
@@ -43,7 +43,7 @@ export class MovieCard extends React.Component {
           <Link to={`/movies/${movie._id}`}>
             <Button variant="link">Open</Button>
           </Link>
-          <Button onClick={update}>Add To Favorites?</Button>
+          <Button onClick={updateFav}>Add To Favorites?</Button>
         </Card.Body>
       </Card>
     );
